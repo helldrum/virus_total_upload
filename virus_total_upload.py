@@ -5,10 +5,9 @@ import requests
 import argparse
 import sys
 import os.path
-import pprint
 import vt
 import time
-import inspect
+
 
 def set_args_definition(parser):
   parser.add_argument(
@@ -79,14 +78,7 @@ def main (args):
   clean_args['file'] = args.file
 
   runtime_vars = {}
-  runtime_vars['script_path'] = os.path.dirname(
-    os.path.realpath(__file__)
-  )
-
-  runtime_vars['file_full_path'] = os.path.join(
-    runtime_vars['script_path'],
-     clean_args['file']
-  )
+  runtime_vars['file_full_path'] = clean_args['file']
 
   runtime_vars['virus_total_api_key'] =\
     get_env_vars_or_exit("VIRUS_TOTAL_API_TOKEN")
